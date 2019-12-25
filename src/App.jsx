@@ -10,7 +10,7 @@ const App = () => {
         <BrowserRouter>
             <Layout>
                 <Switch>
-                    <Route path="/" exact component={ TodosList }/>
+                    <Route path="/" exact component={ TodosList } />
                     <Route path="/edit/:id" component={ EditTodo }/>
                     <Route path="/create" component={ CreateTodo }/>
                 </Switch>
