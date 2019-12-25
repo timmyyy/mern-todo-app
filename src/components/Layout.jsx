@@ -1,25 +1,64 @@
 import React, { useState } from "react"
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap"
+import {
+    Collapse, DropdownItem, DropdownMenu,
+    DropdownToggle,
+    Nav,
+    Navbar,
+    NavbarBrand, NavbarText,
+    NavbarToggler,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown
+} from "reactstrap"
 import Container from "reactstrap/es/Container"
 import logo from "../logo.svg"
 
 export default ( { children } ) => {
-    const [collapsed, setCollapsed] = useState( true )
-    const toggleNavbar = () => setCollapsed( !collapsed )
+    const [isOpen, setIsOpen] = useState( false )
+    const toggle = () => setIsOpen( !isOpen )
 
-    return <Container>
-        <NavbarBrand href="/"><img src={ logo } width="30" height="30" alt="logo"/>MERN-Stack Todo App</NavbarBrand>
-        <NavbarToggler onClick={ toggleNavbar } className="mr-2"/>
-        <Collapse isOpen={ !collapsed } navbar>
-            <Navbar color="faded" dark>
-                <NavItem>
-                    <NavLink href="/">Todos</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="/create">Create Todo</NavLink>
-                </NavItem>
+    return (
+        <Container>
+            <Navbar color="light" light expand="md">
+                <NavbarBrand href="/">
+                    <img src={ logo } width="50" height="50" alt="logo"/>
+                    MERN-Stack Todo App
+                </NavbarBrand>
+                <NavbarToggler onClick={ toggle }/>
+                <Collapse isOpen={ isOpen } navbar>
+                    { getNav() }
+                    <NavbarText>Simple Text</NavbarText>
+                </Collapse>
             </Navbar>
-        </Collapse>
-        { children }
-    </Container>
+            { children }
+        </Container>
+    )
 }
+
+const getNav = () => (
+    <Nav className="mr-auto" navbar>
+        <NavItem>
+            <NavLink href="/">Todos</NavLink>
+        </NavItem>
+        <NavItem>
+            <NavLink href="/create/">Create Todo</NavLink>
+        </NavItem>
+        <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+                Options
+            </DropdownToggle>
+            <DropdownMenu right>
+                <DropdownItem>
+                    Option 1
+                </DropdownItem>
+                <DropdownItem>
+                    Option 2
+                </DropdownItem>
+                <DropdownItem divider/>
+                <DropdownItem>
+                    Reset
+                </DropdownItem>
+            </DropdownMenu>
+        </UncontrolledDropdown>
+    </Nav>
+)
