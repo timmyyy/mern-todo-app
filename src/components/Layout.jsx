@@ -1,10 +1,13 @@
 import React, { useState } from "react"
 import {
-    Collapse, DropdownItem, DropdownMenu,
+    Collapse,
+    DropdownItem,
+    DropdownMenu,
     DropdownToggle,
     Nav,
     Navbar,
-    NavbarBrand, NavbarText,
+    NavbarBrand,
+    NavbarText,
     NavbarToggler,
     NavItem,
     NavLink,
@@ -18,7 +21,7 @@ export default ( { children } ) => {
     const toggle = () => setIsOpen( !isOpen )
 
     return (
-        <Container>
+        <Container fluid>
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">
                     <img src={ logo } width="50" height="50" alt="logo"/>
